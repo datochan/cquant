@@ -1,0 +1,59 @@
+#
+# settings related to recompiling and reruning app when source changes
+#
+
+[app]
+    mode = "release"
+    data_path = "/stock/data"   # 数据的存放路径
+
+    [app.logger]
+        level = "DEBUG"
+        name = "DatoQuant"
+
+[extend]
+    # 扩展参数
+    [extend.files]
+        stock_day_fixed = "/history/fixed/%s.csv.zip"        # 每只股票的后复权价
+        stock_day_ma_price = "/history/ma_price/%s.csv.zip"  # 每只股票后复权价的平均移动均线
+        stock_day_ma_volume = "/history/ma_vol/%s.csv.zip"   # 每只股票交易量的平均移动均线
+        stock_day_pe = "/history/pe/%s.csv.zip"              # 每只股票的平均移动均线
+        stock_day_pb = "/history/pb/%s.csv.zip"              # 每只股票的平均移动均线
+
+[datayes]
+    # 通联数据配置参数
+    token = "xxxxxxxxxxxxxxxxxxx"   # 通联数据api交互token
+
+    [datayes.urls]
+        calendar = "http://api.wmcloud.com/data/v1/api/master/getTradeCal.csv?field=calendarDate,isOpen,prevTradeDate,isWeekEnd,isMonthEnd,isQuarterEnd,isYearEnd&exchangeCD=XSHG"    # 获取开市来的股票交易日
+        stock_basics = "https://api.wmcloud.com/data/v1/api/master/getSecID.csv?assetClass=E"  # 股市中股票的基本信息
+        stock_st = "https://api.wmcloud.com/data/v1/api/equity/getSecST.csv?field=tradeDate,ticker,tradeAbbrName,STflg&beginDate=%s&endDate=%s"  # 某只股票的ST状态
+
+    # 扩展数据的配置参数
+    [datayes.files]
+        stock_limit = "/base/limit.csv.zip"                  # 是否涨跌停
+        stock_st = "/base/st.csv.zip"                        # 每天ST的股票列表
+        stock_sr = "/base/sr.csv.zip"                        # 每天停复牌的股票列表
+
+# 通达信一些配置参数
+[tdx]
+    [tdx.urls]
+        stock_fin = "http://down.tdx.com.cn:8001/fin"
+        fin_list_file = "gpcw.txt"  # 财务数据文件列表
+    [tdx.files]
+        calendar = "/base/calendar.csv.zip"                  # 股票交易日历
+        stock_list = "/base/stocks.csv.zip"                  # 通达信商品(股票、基金、指数、债券等)列表信息
+        stock_bonus = "/base/bonus.csv.zip"                  # 存放每只股票的分红配股信息
+        stock_day = "/history/days/"                         # 每只股票的日K数据
+        stock_min = "/history/mins/"                         # 每只股票的5分钟数据
+        stock_report = "/report/%s"                          # 存放每只股票的财务报告
+    [tdx.server]
+        data_host = "121.14.110.200:443"
+        monitor_host= "121.14.110.200:443"
+
+#
+# db settings
+#
+[db]
+    driver = "mysql"
+    source = "root@localhost/cquant?charset=utf8&parseTime=True&loc=Local"
+    debug = false
