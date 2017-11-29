@@ -9,8 +9,8 @@ import (
 	"github.com/datochan/gcom/logger"
 	tcomm "github.com/datochan/ctdx/comm"
 
-	"github.com/datochan/cquant/cmd"
-	"github.com/datochan/cquant/comm"
+	"cquant/cmd"
+	"cquant/comm"
 )
 
 func main() {
