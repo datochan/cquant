@@ -1,9 +1,9 @@
 package comm
 
 import (
-	"github.com/datochan/ctdx/comm"
 	"log"
 	"github.com/BurntSushi/toml"
+	"github.com/datochan/ctdx/comm"
 )
 
 type Configure struct {

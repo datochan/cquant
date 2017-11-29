@@ -15,7 +15,7 @@ import (
 	"github.com/datochan/gcom/utils"
 	"github.com/datochan/gcom/logger"
 	"github.com/datochan/ctdx"
-	"cquant/comm"
+	"github.com/datochan/cquant/comm"
 )
 
 func Calendar(c *cli.Context) error {
