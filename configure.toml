@@ -4,11 +4,11 @@
 
 [app]
     mode = "release"
-    data_path = "/Users/datochan/WorkSpace/GoglandProjects/src/cquant/data"   # 数据的存放路径
+    data_path = "/stock/data"   # 数据的存放路径
 
     [app.logger]
         level = "DEBUG"
-        name = "DatoQuant"
+        name = "cquant"
 
 [extend]
     # 扩展参数
@@ -21,7 +21,7 @@
 
 [datayes]
     # 通联数据配置参数
-    token = "55de404e0f59a522f52564bf35cfd4c2fa84b9dcf00d1505077a5dc5d67291a9"   # 通联数据api交互token
+    token = "xxxxxxxxxx"   # 通联数据api交互token
 
     [datayes.urls]
         calendar = "http://api.wmcloud.com/data/v1/api/master/getTradeCal.csv?field=calendarDate,isOpen,prevTradeDate,isWeekEnd,isMonthEnd,isQuarterEnd,isYearEnd&exchangeCD=XSHG"    # 获取开市来的股票交易日
@@ -45,7 +45,7 @@
         stock_bonus = "/base/bonus.csv.zip"                  # 存放每只股票的分红配股信息
         stock_day = "/history/days/"                         # 每只股票的日K数据
         stock_min = "/history/mins/"                         # 每只股票的5分钟数据
-        stock_report = "/report/%s"                          # 存放每只股票的财务报告
+        stock_report = "/report/"                          # 存放每只股票的财务报告
     [tdx.server]
         data_host = "121.14.110.200:443"
         monitor_host= "121.14.110.200:443"
