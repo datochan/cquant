@@ -23,7 +23,7 @@ func Calendar(c *cli.Context) error {
 	configure := c.App.Metadata["configure"].(*comm.Configure)
 
 	content := cnet.HttpRequest(configure.Datayes.Urls.Calendar, "", "", configure.Datayes.Token, "")
-	df := dataframe.ReadCSV(strings.NewReader(utils.ConvertTo(content, "gbk", "utf8")))
+	df := dataframe.ReadCSV(strings.NewReader(utils.ConvertTo(string(content), "gbk", "utf8")))
 
 	var curDateAry []string
 	var prevDateAry []string
@@ -59,7 +59,7 @@ func Basics(c *cli.Context) error {
 	// 更新结束后会向管道中发送一个通知
 	<- tdxClient.Finished
 	logger.Info("市场基础数据更新完毕...")
-	tdxClient.Close()
+
 	return nil
 }
 
@@ -76,8 +76,6 @@ func Bonus(c *cli.Context) error {
 	// 更新结束后会向管道中发送一个通知
 	<- tdxClient.Finished
 	logger.Info("高送转数据更新完毕...")
-
-	tdxClient.Close()
 
 	return nil
 }
@@ -96,8 +94,6 @@ func Days(c *cli.Context) error {
 	<- tdxClient.Finished
 	logger.Info("日线数据更新完毕...")
 
-	tdxClient.Close()
-
 	return nil
 }
 
@@ -114,8 +110,6 @@ func Mins(c *cli.Context) error {
 	// 更新结束后会向管道中发送一个通知
 	<- tdxClient.Finished
 	logger.Info("五分钟线数据更新完毕...")
-
-	tdxClient.Close()
 
 	return nil
 }
@@ -158,7 +152,7 @@ func updateST(configure *comm.Configure) error {
 	logger.Info("\t正在获取 %s 至 %s 之间的ST信息", start, strEnd)
 
 	stUrl := fmt.Sprintf(configure.Datayes.Urls.StockSt, start, strEnd)
-	content := cnet.HttpRequest(stUrl, "", "", configure.Datayes.Token, "")
+	content := string(cnet.HttpRequest(stUrl, "", "", configure.Datayes.Token, ""))
 	if len(content) <= 20 {
 		errMsg := fmt.Errorf("获取ST数据失败, 获取内容为:%s", content)
 		logger.Error("%v", errMsg)
@@ -202,7 +196,15 @@ func ST(c *cli.Context) error {
 }
 
 func Report(c *cli.Context) error {
-	fmt.Println("Report: ", c.Args().First())
+	logger.Info("准备更新财报数据...")
+	configure := c.App.Metadata["configure"].(*comm.Configure)
+
+	tdxClient := ctdx.NewDefaultTdxClient(configure)
+	defer tdxClient.Close()
+
+	tdxClient.UpdateReport()
+
+	logger.Info("财报数据更新完毕...")
+
 	return nil
 }
-
