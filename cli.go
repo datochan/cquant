@@ -16,9 +16,9 @@ import (
 func main() {
 	var configureFile string
 	app := cli.NewApp()
-	app.Name = "DatoQuant"
+	app.Name = "cquant"
 	app.Usage = "个人量化投资工具"
-	app.Version = "0.1.0"
+	app.Version = "0.0.1"
 	app.UsageText = "cli [global options] command [command options] [arguments...]"
 	app.Authors = []cli.Author{cli.Author{Name:  "datochan",Email: "datochan@qq.com"}}
 
