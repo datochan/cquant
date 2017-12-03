@@ -11,9 +11,11 @@
 ## 编译与执行
 
 编译脚本的用法: `BASH ./build.sh -h`
+
 >
-> Usage: ./build.sh -o [linux|windows|darwin|freebsd] -a [386|amd64]
+> Usage: ./build.sh -o [linux|windows|darwin|freebsd] -a [386|amd64] <br />
 >        ./build.sh -h for help.
+>
 
 示例:
 ```
