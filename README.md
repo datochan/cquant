@@ -29,10 +29,9 @@ BASH ./build.sh -a amd64 -o windows
 ```
 /data
 ├── base
-│   ├── basics.csv     # 通联数据中股票的基础信息(股票代码，名称，上市日期，状态等)
 │   └── bonus.csv      # 通达信中的高送转数据
-│   └── calendar.csv   # 通联数据的交易日历信息
-│   └── st.csv          # 通联数据中st股票信息
+│   └── calendar.csv   # 股市休市日历(参考: `https://github.com/datochan/SCGenerator`)
+│   └── st.csv         # 每天从通达信的股票技术信息中获取
 │   └── stocks.csv     # 通达信中股票、基金、债券的基础信息
 ├── daily          # 按日期分类的股票数据 (方便筛选和查询)
 │   ├── days               # 通达信中的日线数据
