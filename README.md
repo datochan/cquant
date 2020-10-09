@@ -8,6 +8,16 @@
 
 由于我了解到的基金和债券相关的数据较少，不如股票数据丰富，所以本程序先已股票为主。
 
+---
+
+### 2020/10/09 更新
+
+本仓库因违反了[github的DMCA规定](https://docs.github.com/articles/dmca-takedown-policy/), 清理敏感内容，保留仓库留念！
+
+---
+
+
+
 ## 编译与执行
 
 编译脚本的用法: `BASH ./build.sh -h`
